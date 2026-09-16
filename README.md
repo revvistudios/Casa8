@@ -40,6 +40,8 @@ de qualquer compromisso de prazo.
 | [`docs/05-integracao-sienge.md`](docs/05-integracao-sienge.md) | O que se sabe da API, o checklist do spike técnico e o plano B |
 | [`docs/06-controles.md`](docs/06-controles.md) | Os 28 controles-chave dos procedimentos convertidos em mecanismo de sistema |
 | [`docs/07-perguntas-abertas.md`](docs/07-perguntas-abertas.md) | O que perguntar na empresa, incluindo o que perguntar sobre o seu próprio papel |
+| [`docs/08-proposta-comercial.md`](docs/08-proposta-comercial.md) | **A proposta comercial** para enviar ao cliente: checkpoints do sistema, implementação em cinco fases a partir de um mapeamento contratado à parte, investimento e condições |
+| [`docs/prompts/portal-cotacao-fornecedor.md`](docs/prompts/portal-cotacao-fornecedor.md) | Prompt para o Claude Design gerar as telas do portal de cotação do fornecedor |
 
 ## Como usar isto
 
