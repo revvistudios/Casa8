@@ -3,6 +3,10 @@
 Prompt pronto para colar no **Claude Design** e gerar as telas do portal onde o
 fornecedor vê o que está sendo cotado e devolve a proposta.
 
+O prompt **não define estilo visual** — ele especifica conteúdo, estrutura e
+comportamento. A aparência vem do design system que você já usa; há um espaço
+marcado no topo para apontá-lo.
+
 **Por que estas telas primeiro:** a cotação é a etapa que hoje vaza inteiramente
 para planilha e e-mail (fratura F1 do diagnóstico), e o portal do fornecedor é o
 que tira o e-mail do caminho crítico (F2). É também a parte do sistema que nenhum
@@ -10,8 +14,8 @@ dos cenários A ou B da empresa entrega bem.
 
 **Dados usados:** os itens e valores vêm da aba `Exemplo` do
 `Quadro_de_Concorrencia_CASA8.xlsx` — o QC-2026-015 de concreto usinado. Usar
-dados reais evita que o Claude Design invente conteúdo genérico, e as telas já
-saem prontas para mostrar a suprimentos.
+dados reais evita conteúdo genérico, e as telas já saem prontas para mostrar a
+suprimentos.
 
 **Decisão de produto embutida:** o campo de observação/divergência **por item**.
 A planilha só tem um "Atende à especificação técnica? Sim / Parcial / Não" global
@@ -26,6 +30,15 @@ Crie um canvas de design para o portal de cotação de fornecedores do Grupo CAS
 uma incorporadora/construtora brasileira. É a tela que o fornecedor recebe por
 e-mail para ver o que está sendo cotado e devolver sua proposta.
 
+## DESIGN SYSTEM
+
+[COLE AQUI OS TOKENS / COMPONENTES / REFERÊNCIA DO SEU SISTEMA]
+
+Use exclusivamente o design system acima: suas cores, tipografia, espaçamentos,
+componentes de formulário, tabela, botão e estados. Não invente paleta nem
+tipografia própria e não introduza componentes fora do sistema. Onde o sistema
+não cobrir algum caso, derive do que ele já define e sinalize no canvas.
+
 ## CONTEXTO DO PROCESSO
 
 Suprimentos envia a mesma especificação para no mínimo 3 fornecedores cadastrados.
@@ -39,8 +52,8 @@ sem senha. Pode ser o comercial abrindo no celular.
 ## REGRAS QUE MOLDAM A INTERFACE
 
 1. O fornecedor NUNCA vê preço de concorrente nem o custo orçado da obra. Cotação
-   fechada — isso é inegociável e deve ficar visualmente evidente ("sua proposta
-   é confidencial").
+   fechada — isso é inegociável e deve ficar evidente na tela ("sua proposta é
+   confidencial").
 2. Os itens (descrição, unidade, quantidade) são SOMENTE LEITURA. Todos cotam a
    mesma especificação; se cada um alterar, a comparação não vale.
 3. Upload da proposta formal assinada é obrigatório — nenhum fornecedor é
@@ -49,7 +62,7 @@ sem senha. Pode ser o comercial abrindo no celular.
 5. Deve dar para salvar rascunho e voltar depois.
 6. Depois de enviado, trava — mas suprimentos pode reabrir numa rodada de negociação.
 7. Português do Brasil. Valores em R$ com vírgula decimal e milhar com ponto.
-   Números alinhados à direita com tabular-nums.
+   Números alinhados à direita, com largura tabular.
 
 ## ARTBOARDS
 
@@ -79,7 +92,7 @@ Totais por item: 57.540,00 · 4.560,00 · 2.100,00 — Subtotal 64.200,00
 Cada item tem também um campo discreto de observação/divergência, para o caso de
 o fornecedor não atender exatamente à especificação daquele item.
 
-Abaixo, bloco "Equalização" — explique em uma linha por que é pedido:
+Abaixo, bloco "Equalização" — com uma linha explicando por que é pedido:
   Frete: CIF (incluso) / FOB (por conta da obra) → selecionado CIF
   Impostos inclusos no preço? Sim / Não → Sim
   Outros custos (+) ou descontos (−): −1.500,00 (rotulado "Desconto comercial")
@@ -113,9 +126,9 @@ o comprovante em PDF. Explicar o próximo passo em uma frase: a CASA8 vai compar
 as propostas e pode abrir uma rodada de negociação. Nada de confete.
 
 ### 6 — Rodada de negociação
-Mesma identidade visual, com tarja no topo: "A CASA8 solicitou uma revisão da sua
-proposta · prazo até 25/09". Mostra a proposta anterior (62.700,00) em leitura e
-um campo para o novo total, com histórico das rodadas ao lado:
+Tarja no topo: "A CASA8 solicitou uma revisão da sua proposta · prazo até 25/09".
+Mostra a proposta anterior (62.700,00) em leitura e um campo para o novo total,
+com histórico das rodadas ao lado:
   Proposta original 62.700,00 · 1ª negociação 62.100,00 · 2ª negociação (em aberto)
 Campo de justificativa opcional. Botão "Enviar nova proposta" e link secundário
 "Manter o valor anterior".
@@ -130,25 +143,12 @@ Mantenha leve — recusar rápido é melhor para os dois lados do que silêncio.
 A tabela de itens vira cards empilhados, um por item, com o preço unitário como
 campo grande e fácil de tocar. O painel de total continua fixo no rodapé.
 
-## DIREÇÃO VISUAL
+## ESTADOS A MOSTRAR
 
-Papel técnico frio, sóbrio, de engenharia — sem cara de startup.
-
-  fundo      #EDF0F1     superfície #FFFFFF     superfície 2 #F4F7F8
-  tinta      #15181B     secundária #4E5A63     terciária    #7C8892
-  linhas     #D3DADE
-  laranja    #DD5420  — reservado para AÇÃO e DECISÃO (botão primário, prazo,
-                        campos obrigatórios). Vem dos diagramas de processo da
-                        própria empresa, onde marca aprovações. Use com parcimônia.
-  teal       #0E6B62  — confirmado, enviado, valor consolidado
-
-Tipografia: Archivo (títulos, rótulos e UI), IBM Plex Mono (códigos de insumo,
-números de QC, quantidades e valores — tabular). No corpo do e-mail pode usar
-Source Serif 4, que é a face dos documentos institucionais da empresa.
-
-Nada de cards arredondados por toda parte: bordas de 2px de raio, hairlines,
-hierarquia por peso e espaçamento. Tabelas densas e legíveis, como planilha bem
-feita — é o que essas pessoas usam o dia inteiro. Funciona em tema claro e escuro.
+Além das telas acima, inclua no canvas:
+  - campo de preço com erro de validação (valor não preenchido ao tentar avançar)
+  - proposta salva como rascunho, com aviso de prazo próximo
+  - cotação com prazo expirado, em leitura, sem possibilidade de envio
 ```
 
 ---
